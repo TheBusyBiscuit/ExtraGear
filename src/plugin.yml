@@ -1,0 +1,7 @@
+name: ExtraGear
+version: 1.1
+authors: [mrCookieSlime]
+website: https://thebusybiscuit.github.io/
+depend: [Slimefun, CS-CoreLib]
+
+main: me.mrCookieSlime.ExtraGear.ExtraGear
