@@ -91,7 +91,7 @@ public class ExtraGear extends JavaPlugin {
 				new CustomItem(Material.getMaterial(material + "_LEGGINGS"), "&r" + StringUtils.format(component) + " Leggings", enchantments, 0),
 				new CustomItem(Material.getMaterial(material + "_BOOTS"), "&r" + StringUtils.format(component) + " Boots", enchantments, 0)
 		};
-		SlimefunManager.registerArmorSet(item, armor, component, false);
+		SlimefunManager.registerArmorSet(item, armor, component, false, false);
 		
 		id++;
 		Slimefun.registerResearch(new Research(id, StringUtils.format(component) + " Armor", 5), armor);
