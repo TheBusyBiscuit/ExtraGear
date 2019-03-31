@@ -12,17 +12,18 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.bukkit.plugin.Plugin;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 public class CSCoreLibLoader {
-	
+
 	Plugin plugin;
 	URL url;
 	URL download;
 	File file;
-	
+
 	public CSCoreLibLoader(Plugin plugin) {
 		this.plugin = plugin;
 		try {
@@ -30,7 +31,7 @@ public class CSCoreLibLoader {
 		} catch (MalformedURLException e) {
 		}
 	}
-	
+
 	public boolean load() {
 		if (plugin.getServer().getPluginManager().isPluginEnabled("CS-CoreLib")) return true;
 		else {
@@ -38,7 +39,7 @@ public class CSCoreLibLoader {
 			System.err.println("#################### - INFO - ####################");
 			System.err.println(" ");
 			System.err.println(plugin.getName() + " could not be loaded.");
-			System.err.println("It appears that you have not installed CS-CoreLib");
+			System.err.println("It appears that you have not installed CS-CoreLib.");
 			System.err.println("Your Server will now try to download and install");
 			System.err.println("CS-CoreLib for you.");
 			System.err.println("You will be asked to restart your Server when it's finished.");
@@ -47,17 +48,15 @@ public class CSCoreLibLoader {
 			System.err.println(" ");
 			System.err.println("#################### - INFO - ####################");
 			System.err.println(" ");
-			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-				
-				@Override
-				public void run() {
-					if (connect()) install();
-				}
+
+			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+				if (connect()) install();
 			}, 10L);
+
 			return false;
 		}
 	}
-	
+
 	private boolean connect() {
         try {
             final URLConnection connection = this.url.openConnection();
@@ -69,7 +68,7 @@ public class CSCoreLibLoader {
             final JSONArray array = (JSONArray) JSONValue.parse(reader.readLine());
             download = traceURL(((String) ((JSONObject) array.get(array.size() - 1)).get("downloadUrl")).replace("https:", "http:"));
             file = new File("plugins/" + (String) ((JSONObject) array.get(array.size() - 1)).get("name") + ".jar");
-            
+
             return true;
         } catch (IOException e) {
         	System.err.println(" ");
@@ -84,10 +83,10 @@ public class CSCoreLibLoader {
             return false;
         }
     }
-	
+
 	private URL traceURL(String location) throws IOException {
 	    	HttpURLConnection connection = null;
-	    	
+
 	        while (true) {
 	            URL url = new URL(location);
 	            connection = (HttpURLConnection) url.openConnection();
@@ -105,10 +104,10 @@ public class CSCoreLibLoader {
 	            }
 	            break;
 	        }
-	        
+
 	        return new URL(connection.getURL().toString().replaceAll(" ", "%20"));
 	}
-	
+
 	private void install() {
 		BufferedInputStream input = null;
 		FileOutputStream output = null;
