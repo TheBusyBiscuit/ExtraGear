@@ -3,7 +3,7 @@ version: ${project.version}
 authors: [mrCookieSlime, DeathlyPanda]
 website: https://thebusybiscuit.github.io/
 depend: [Slimefun, CS-CoreLib]
-api-version: 1.13
+api-version: 1.14
 
 main: me.mrCookieSlime.ExtraGear.ExtraGear
 
