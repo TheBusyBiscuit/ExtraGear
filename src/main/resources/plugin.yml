@@ -1,0 +1,7 @@
+name: ExtraGear
+version: ${project.version}
+author: TheBusyBiscuit
+depend: [Slimefun]
+
+api-version: 1.14
+main: io.github.thebusybiscuit.extragear.ExtraGear
