@@ -215,7 +215,7 @@ public class ExtraGear extends JavaPlugin {
 		
 		for (Pair<Enchantment, Integer> enchantment : enchantments) {
 			for (ItemStack is : armor) {
-				is.addEnchantment(enchantment.getFirstValue(), enchantment.getSecondValue());
+				is.addUnsafeEnchantment(enchantment.getFirstValue(), enchantment.getSecondValue());
 			}
 		}
 		
