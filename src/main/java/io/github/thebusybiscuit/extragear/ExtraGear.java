@@ -194,7 +194,7 @@ public class ExtraGear extends JavaPlugin {
 		SlimefunItemStack is = new SlimefunItemStack(component + "_SWORD", type, "&r" + StringUtils.format(component) + " Sword");
 
 		for (Pair<Enchantment, Integer> enchantment : enchantments) {
-			is.addEnchantment(enchantment.getFirstValue(), enchantment.getSecondValue());
+			is.addUnsafeEnchantment(enchantment.getFirstValue(), enchantment.getSecondValue());
 		}
 		
 		new SlimefunItem(Categories.WEAPONS, is, RecipeType.ENHANCED_CRAFTING_TABLE,
