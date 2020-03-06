@@ -9,6 +9,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
 import me.mrCookieSlime.Slimefun.Lists.Categories;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -24,7 +25,7 @@ import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
 
-public class ExtraGear extends JavaPlugin {
+public class ExtraGear extends JavaPlugin implements SlimefunAddon {
 
 	private int researchId = 3300;
 
@@ -199,7 +200,7 @@ public class ExtraGear extends JavaPlugin {
 		
 		new SlimefunItem(Categories.WEAPONS, is, RecipeType.ENHANCED_CRAFTING_TABLE,
 		new ItemStack[] {null, item, null, null, item, null, null, new ItemStack(Material.STICK), null})
-		.register();
+		.register(this);
 		
 		researchId++;
 		Slimefun.registerResearch(new Research(new NamespacedKey(this, component.toLowerCase() + "_sword"), researchId, StringUtils.format(component) + " Sword", 3), is);
@@ -219,10 +220,20 @@ public class ExtraGear extends JavaPlugin {
 			}
 		}
 		
-		SlimefunManager.registerArmorSet(item, armor, component, false, false);
+		SlimefunManager.registerArmorSet(item, armor, component, false, this);
 
 		researchId++;
 		Slimefun.registerResearch(new Research(new NamespacedKey(this, component.toLowerCase() + "_armor"), researchId, StringUtils.format(component) + " Armor", 5), armor);
 	}
+
+    @Override
+    public JavaPlugin getJavaPlugin() {
+        return this;
+    }
+
+    @Override
+    public String getBugTrackerURL() {
+        return "https://github.com/TheBusyBiscuit/ExtraGear/issues";
+    }
 
 }

@@ -2,7 +2,7 @@ package io.github.thebusybiscuit.extragear;
 
 import org.bukkit.Material;
 
-public enum ArmorSet {
+enum ArmorSet {
 	
 	LEATHER(Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS),
 	IRON(Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS),
